@@ -1,17 +1,17 @@
-version: '3.8'
-
 services:
   api:
     # Replace with your actual ECR image URI
-    image: <ACCOUNT-ID>.dkr.ecr.us-east-1.amazonaws.com/docker-app:v1
+    image: 868522398413.dkr.ecr.us-east-1.amazonaws.com/docker-app:v1
     ports:
       - "3000:3000"
     environment:
-      DB_HOST: db
+      DB_HOST: tasks.myapp_db
       DB_USER: root
       DB_PASS: ${DB_PASSWORD:-MyS3cur3P@ss}
       DB_NAME: docker_lab
       NODE_ENV: production
+    healthcheck:
+      disable: true
     deploy:
       replicas: 3
       update_config:

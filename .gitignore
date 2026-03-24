@@ -28,6 +28,20 @@ logs/
 
 # Lab PDF (optional - remove if you want to commit it)
 Lab_008_Docker.pdf
-build-and-push.sh
 DEPLOYMENT_GUIDE.md
+
+# Terraform
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/terraform.tfvars
+terraform/*.auto.tfvars
+terraform/crash.log
+terraform/.terraformrc
+my-ec2.pem
+my-ec2.ppk
 build-and-push.ps1
+build-and-push.sh
