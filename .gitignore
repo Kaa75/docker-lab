@@ -30,3 +30,4 @@ logs/
 Lab_008_Docker.pdf
 build-and-push.sh
 DEPLOYMENT_GUIDE.md
+build-and-push.ps1
