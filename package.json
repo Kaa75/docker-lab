@@ -1,0 +1,25 @@
+{
+  "name": "docker-app",
+  "version": "1.0.0",
+  "description": "Docker lab application with Express and MySQL",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "mysql2": "^3.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "keywords": [
+    "docker",
+    "express",
+    "mysql",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC"
+}

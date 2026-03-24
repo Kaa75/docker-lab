@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  api:
+    # Replace with your actual ECR image URI
+    image: <ACCOUNT-ID>.dkr.ecr.us-east-1.amazonaws.com/docker-app:v1
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASS: ${DB_PASSWORD:-MyS3cur3P@ss}
+      DB_NAME: docker_lab
+      NODE_ENV: production
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    networks:
+      - app-network
+
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-MyS3cur3P@ss}
+      MYSQL_DATABASE: docker_lab
+    volumes:
+      - db_data:/var/lib/mysql
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: on-failure
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: overlay
+    attachable: true
+
+volumes:
+  db_data:
+    driver: local
